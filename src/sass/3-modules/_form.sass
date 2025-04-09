@@ -1,0 +1,29 @@
+@use '../1-base/mixins'
+
+form
+    width: 40%
+    @include mixins.centerM($display: flex)
+    
+
+    fieldset
+        border: 0
+
+        label
+            background-color: #e2ecf7
+            font-weight: 500
+            padding: .1rem 1rem
+            border-radius: 5px
+
+        label>span
+            color: red
+            
+    input
+        
+
+    fieldset>input
+        width: 100%
+        padding: 1rem
+        margin: 0.5rem 0
+        border-radius: 5px
+        border: 1px solid #ccc
+        font-size: 1rem

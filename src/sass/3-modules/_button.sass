@@ -1,0 +1,23 @@
+@use '../1-base/variables'
+@use '../1-base/mixins'
+
+button
+    border: 0
+    border-radius: 0.5rem
+    padding: 1rem
+    font-size: 1.5rem
+    background-color: variables.$bg-btn
+    color: variables.$color-white
+    cursor: pointer
+    transition: background-color 0.3s ease
+    margin-top: 1.2rem
+    width: 100%
+
+    &:hover
+        background-color: variables.$bg-btn-hover
+
+
+.div-container-button
+    @include mixins.center($display: flex)
+    
+    
