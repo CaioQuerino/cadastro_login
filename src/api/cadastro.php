@@ -48,6 +48,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         header(`Location: {$BASE_URL}pages/erro-409.html`);         
         exit;
     }
+    
 
     // Insert into database using prepared statement
     $sql = "INSERT INTO users (first_name, last_name, email, password) VALUES (?, ?, ?, ?)";
