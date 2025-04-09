@@ -2,14 +2,17 @@
 header('Content-Type: application/json');
 
 // Correct include path (adjust according to your file structure)
-include_once __DIR__ . 'conn.php';
+include_once __DIR__ . '/conn.php';
+
+$BASE_URL = '/cadastro_login/src/'
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     // Verify connection exists
     if (!$conn) {
         http_response_code(500);
         echo json_encode(['status' => 'error', 'message' => 'Database connection failed']);
-        header('Location: /src/pages/erro-500.html');         exit;
+        header(`Location: {$BASE_URL}pages/erro-500.html`);         
+        exit;
     }
 
     // Get and sanitize input
@@ -42,7 +45,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if (mysqli_num_rows($result) > 0) {
         http_response_code(409);
         echo json_encode(['status' => 'error', 'message' => 'Email already registered.']);
-        header('Location: index.html');         
+        header(`Location: {$BASE_URL}pages/erro-409.html`);         
         exit;
     }
 
@@ -53,16 +56,18 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     if (mysqli_stmt_execute($stmt)) {
         echo json_encode(['status' => 'success', 'message' => 'Registration successful!']);
+        header(`Location: {$BASE_URL}pages/success-201.html`);         
     } else {
         http_response_code(500);
         echo json_encode(['status' => 'error', 'message' => 'Database error: ' . mysqli_error($conn)]);
-        header('Location: /src/pages/erro-500.html'); 
+        header(`Location: {$BASE_URL}pages/erro-500.html`);         
     }
 
     mysqli_stmt_close($stmt);
 } else {
     http_response_code(405);
     echo json_encode(['status' => 'error', 'message' => 'Method not allowed.']);
+    header(`Location: {$BASE_URL}pages/erro-405.html`);
 }
 
 $database->closeConnection();

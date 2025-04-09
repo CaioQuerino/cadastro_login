@@ -5,41 +5,13 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
     <meta charset="UTF-8">
-    <title>Cadastro</title>
-    <link rel="stylesheet" href="src/css/style.css" type="text/css">
+    <title>Login</title>
+    <link rel="stylesheet" href="../css/style.css" type="text/css">
 </head>
 <body>
-    <form action="src/api/cadastro.php" method="POST">
-        <h1>Registration form</h1>
+    <form action="../api/login.php" method="POST" id="form-login">
+        <h1>Login</h1>
         
-        <fieldset>
-            <label for="first-name">First name <span>*</span></label>
-            <span id="message-error-name" class="error-message" style="display: none; color: red;"></span>
-            <input 
-                type="text" 
-                name="first-name" 
-                id="first-name"
-                aria-placeholder="Enter your name"
-                placeholder="Enter your name"
-                autocomplete="off" 
-                required
-                maxlength="50"
-            >
-
-            <label for="last-name">Last name <span>*</span></label>
-            <div id="message-error-l-name"></div>
-
-            <input 
-                type="text" 
-                name="last-name" 
-                id="last-name"
-                aria-placeholder="Enter your last name"
-                placeholder="Enter your last name"
-                autocomplete="off" 
-                required
-                maxlength="50"
-            >
-        </fieldset>
 
         <fieldset>
             <label for="email">E-mail <span>*</span></label>
@@ -77,10 +49,11 @@
         </div>
 
         <div class="div-container-link">
-            <p>Já tenho uma conta <a href="./src/pages/login.html">Entrar</a></p>
-            <p> | <a href="./src/pages/recuperar.html">Recuperar senha</a></p>
+            <p>Não tem uma conta? <a href="../../index.html">Cadastre-se</a></p>
+            <p> | <a href="./recuperar.html">Recuperar senha</a></p>
         </div>
 
     </form>
+
 </body>
 </html>

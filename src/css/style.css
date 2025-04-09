@@ -64,10 +64,18 @@ button:hover {
   background-color: #004085;
 }
 
-.div-container-button {
+.div-container-button, .div-container-link {
   display: flex;
   justify-content: center;
   gap: 10px;
+  margin-top: 1.2rem;
+}
+.div-container-button p > a, .div-container-link p > a {
+  color: #007bff;
+  transition: color 0.3s ease;
+}
+.div-container-button p > a:hover, .div-container-link p > a:hover {
+  color: #004085;
 }
 
 .error-message {
@@ -77,22 +85,35 @@ button:hover {
   margin-top: 0.25rem;
 }
 
-.main-container-500 {
+.main-container-500, .main-container-409 {
   display: flex;
   flex-direction: column;
   justify-content: center;
   height: 100vh;
+  background-color: #f44336;
   font-weight: 900;
   gap: 20px;
   align-items: center;
-  background-color: #f44336;
   color: #fff;
 }
-.main-container-500 a {
+.main-container-500 a, .main-container-409 a {
   padding: 5px 10px;
   background-color: #fff;
   border-radius: 8px;
   color: #000;
+}
+
+.main-container-sucesso {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100vh;
+  background-color: #7aec5e;
+  color: #fff;
+  font-weight: 900;
+  gap: 20px;
+  align-items: center;
+  color: #fff;
 }
 
 /*# sourceMappingURL=style.css.map */

@@ -1,0 +1,20 @@
+@use '../1-base/variables'
+@use '../1-base/mixins'
+
+.main-container-500, .main-container-409
+    @include mixins.centerColumn($display: flex)
+    background-color: variables.$color-500
+    @include mixins.alertas
+    
+
+    a
+        padding: 5px 10px
+        background-color: #fff
+        border-radius: 8px
+        color: #000
+
+.main-container-sucesso
+    @include mixins.centerColumn($display: flex)
+    background-color: variables.$color-201
+    color: variables.$color-white
+    @include mixins.alertas

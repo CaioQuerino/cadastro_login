@@ -1,4 +1,7 @@
 <?php
+
+$BASE_URL = '/cadastro_login/src/'
+
 class Crud {
     private $conn;
     private static $instance = null;
@@ -14,6 +17,40 @@ class Crud {
             self::$instance = new self($dbConnection);
         }
         return self::$instance;
+    }
+
+    // LOGIN FUNCTION (NEW)
+    public function login($email, $password) {
+        // Find user by email
+        $user = $this->readAll('users', ['email' => $email], 1);
+        
+        if (empty($user)) {
+            return ['status' => false, 'message' => 'User not found'];
+        }
+        
+        $user = $user[0]; // Get first result
+        
+        // Verify password
+        if (password_verify($password, $user['password'])) {
+            header(`Location: {$BASE_URL}api/profile.php`);
+            session_start([
+                'cookie_httponly' => true,
+                'cookie_secure' => true,
+                'use_strict_mode' => true
+            ]);
+            session_regenerate_id(true);
+            $_SESSION['user'] = $user;
+            
+            
+            unset($user['password']);
+            return [
+                'status' => true,
+                'message' => 'Login successful',
+                'user' => $user
+            ];
+        } else {
+            return ['status' => false, 'message' => 'Incorrect password'];
+        }
     }
 
     // Create operation

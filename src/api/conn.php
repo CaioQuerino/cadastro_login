@@ -5,7 +5,7 @@ $pass = '';
 $db = 'db_test';
 
 class Database {
-    private $conn;
+    public $conn;
 
     public function __construct($host, $user, $pass, $db) {
         $this->conn = mysqli_connect($host, $user, $pass, $db);

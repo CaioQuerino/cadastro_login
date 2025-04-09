@@ -1,3 +1,5 @@
+@use './variables'
+
 @mixin centerM($display: flex)
     display: $display
     flex-direction: column
@@ -15,4 +17,10 @@
     display: $display
     justify-content: center
     gap: 10px
+    
+@mixin alertas
+    font-weight: 900
+    gap: 20px
+    align-items: center
+    color: variables.$color-white
     
