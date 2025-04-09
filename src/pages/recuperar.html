@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <title>Recuperar Senha</title>
+    <link rel="stylesheet" href="/cadastro_login/src/css/style.css" type="text/css">
+</head>
+<body>
+    <form action="/cadastro_login/api/login.php" method="POST" id="form-login">
+        <h1>Recover password</h1>
+
+        <fieldset>
+            <label for="name_mother">Mother's name <span>*</span></label>
+
+            <input 
+                type="text" 
+                name="name_mother" 
+                id="name_mother"
+                aria-placeholder="Enter your mother's name"
+                placeholder="Enter your mother's name"
+                title="Exemplo: Maria Silva Oliveira"
+                autocomplete="off" 
+                required
+                maxlength="100"
+            >                
+
+            <label for="cpf">CPF <span>*</span></label>
+
+            <input 
+                type="text" 
+                name="cpf" 
+                id="cpf"
+                aria-placeholder="000.000.000-00"
+                placeholder="000.000.000-00"
+                pattern="\d{3}\.\d{3}\.\d{3}-\d{2}"
+                title="Formato: 000.000.000-00"
+                autocomplete="off" 
+                required
+                maxlength="14"
+            >
+        </fieldset>
+
+        <div class="div-container-button">
+            <button type="submit">Submit</button>
+            <button type="reset">Clear</button>
+        </div>
+
+        <div class="div-container-link">
+            <p><a aria-label="voltar" href="/cadastro_login/index.html">Back</a></p>
+            <p> | <a href="/cadastro_login/src/pages/login.html">Enter</a></p>
+        </div>
+    </form>
+
+</body>
+</html>

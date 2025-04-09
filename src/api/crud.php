@@ -1,13 +1,15 @@
 <?php
 
+include_once __DIR__ . '/conn.php';
+
 $BASE_URL = '/cadastro_login/src/'
 
 class Crud {
-    private $conn;
-    private static $instance = null;
+    public $conn;
+    public static $instance = null;
 
-    // Private constructor to prevent direct instantiation
-    private function __construct($dbConnection) {
+    // public constructor to prevent direct instantiation
+    public function __construct($dbConnection) {
         $this->conn = $dbConnection;
     }
 
@@ -185,5 +187,5 @@ class Crud {
     }
 
     // Prevent cloning
-    private function __clone() {}
+    public function __clone() {}
 }
