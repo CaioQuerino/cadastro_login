@@ -17,7 +17,7 @@ $user = $_SESSION['user'];
 <head>
     <meta charset="UTF-8">
     <title>Perfil do Usuário</title>
-    <link rel="stylesheet" href="/cadastro_login/src/css/style.css">
+    <link rel="stylesheet" href="../css/style.css">
 </head>
 <body>
     <div class="profile-container">
