@@ -12,8 +12,8 @@
     <form action="/cadastro_login/api/login.php" method="POST" id="form-login">
         <h1>Recover password</h1>
 
-        <fieldset>
-            <label for="name_mother">Mother's name <span>*</span></label>
+        <fieldset aria-label="User information">
+            <label aria-label="label name mother" for="name_mother">Mother's name <span>*</span></label>
 
             <input 
                 type="text" 
@@ -27,7 +27,7 @@
                 maxlength="100"
             >                
 
-            <label for="cpf">CPF <span>*</span></label>
+            <label aria-label="label CPF" for="cpf">CPF <span>*</span></label>
 
             <input 
                 type="text" 
@@ -44,13 +44,13 @@
         </fieldset>
 
         <div class="div-container-button">
-            <button type="submit">Submit</button>
-            <button type="reset">Clear</button>
+            <button aria-label="Submit" type="submit">Submit</button>
+            <button aria-label="Reset" type="reset">Clear</button>
         </div>
 
         <div class="div-container-link">
-            <p><a aria-label="voltar" href="/cadastro_login/index.html">Back</a></p>
-            <p> | <a href="/cadastro_login/src/pages/login.html">Enter</a></p>
+            <p><a aria-label="link para início" href="/cadastro_login/index.html">Back</a></p>
+            <p aria-label="link login" > | <a href="/cadastro_login/src/pages/login.html">Enter</a></p>
         </div>
     </form>
 

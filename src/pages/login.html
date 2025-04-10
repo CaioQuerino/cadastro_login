@@ -3,48 +3,43 @@
 <head>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;900&display=swap" rel="stylesheet">
     <meta charset="UTF-8">
     <title>Login</title>
-    <link rel="stylesheet" href="../css/style.css" type="text/css">
+    <link rel="stylesheet" href="/cadastro_login/src/css/style.css" type="text/css">
 </head>
 <body>
     <form action="/cadastro_login/src/api/login.php" method="POST" id="form-login">
         <h1>Login</h1>
         
-
-        <fieldset aria-label="User credentials">
-            <label aria-label="label email" for="email">E-mail <span>*</span></label>
-            <div id="message-error-email"></div>
+        <fieldset>
+            <label for="email">E-mail <span>*</span></label>
+            <div id="message-error-email" class="error-message"></div>
 
             <input 
                 type="email" 
                 name="email" 
                 id="email"
-                aria-placeholder="Enter your e-mail"
                 placeholder="Enter your e-mail"
                 pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}"
                 title="Please enter a valid email address"
-                aria-label="Enter your e-mail"
-                aria-required="true"
-                aria-invalid="false"
-                autocomplete="off" 
                 required
                 maxlength="100"
+                autocomplete="email"
             >                
 
-            <label aria-label="label password" for="password">Password <span>*</span></label>
-            <div id="message-error-password"></div>
+            <label for="password">Password <span>*</span></label>
+            <div id="message-error-password" class="error-message"></div>
 
             <input 
                 type="password" 
                 name="password" 
                 id="password"
-                aria-placeholder="Digite sua senha"
                 placeholder="Digite sua senha"
-                autocomplete="off" 
                 required
-                maxlength="8"
+                minlength="8"
+                maxlength="64"
+                autocomplete="current-password"
             >
         </fieldset>
 
@@ -54,11 +49,25 @@
         </div>
 
         <div class="div-container-link">
-            <p aria-label="link cadastro">Don't have an account? <a href="/cadastro_login/">Register</a></p>
-            <p aria-label="link recuperar senha"> | <a href="/cadastro_login/src/pages/recuperar.html">Recover password</a></p>
+            <p>Don't have an account? <a href="/cadastro_login/">Register</a></p>
+            <p><a href="/cadastro_login/src/pages/recuperar.html">Recover password</a></p>
         </div>
 
     </form>
 
+    <script>
+        // Adicionando proteção básica contra brute-force
+        let attempts = 0;
+        const maxAttempts = 5;
+        
+        document.getElementById('form-login').addEventListener('submit', function(e) {
+            attempts++;
+            if (attempts > maxAttempts) {
+                e.preventDefault();
+                alert('Too many attempts. Please try again later.');
+                // Aqui você pode desativar o formulário ou redirecionar
+            }
+        });
+    </script>
 </body>
 </html>
