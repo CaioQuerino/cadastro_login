@@ -13,8 +13,8 @@
         <h1>Login</h1>
         
 
-        <fieldset>
-            <label for="email">E-mail <span>*</span></label>
+        <fieldset aria-label="User credentials">
+            <label aria-label="label email" for="email">E-mail <span>*</span></label>
             <div id="message-error-email"></div>
 
             <input 
@@ -23,20 +23,25 @@
                 id="email"
                 aria-placeholder="Enter your e-mail"
                 placeholder="Enter your e-mail"
+                pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}"
+                title="Please enter a valid email address"
+                aria-label="Enter your e-mail"
+                aria-required="true"
+                aria-invalid="false"
                 autocomplete="off" 
                 required
                 maxlength="100"
             >                
 
-            <label for="password">Password <span>*</span></label>
+            <label aria-label="label password" for="password">Password <span>*</span></label>
             <div id="message-error-password"></div>
 
             <input 
                 type="password" 
                 name="password" 
                 id="password"
-                aria-placeholder="********"
-                placeholder="********"
+                aria-placeholder="Digite sua senha"
+                placeholder="Digite sua senha"
                 autocomplete="off" 
                 required
                 maxlength="8"
@@ -49,8 +54,8 @@
         </div>
 
         <div class="div-container-link">
-            <p>Don't have an account? <a href="/cadastro_login/">Register</a></p>
-            <p> | <a href="/cadastro_login/src/pages/recuperar.html">Recover password</a></p>
+            <p aria-label="link cadastro">Don't have an account? <a href="/cadastro_login/">Register</a></p>
+            <p aria-label="link recuperar senha"> | <a href="/cadastro_login/src/pages/recuperar.html">Recover password</a></p>
         </div>
 
     </form>

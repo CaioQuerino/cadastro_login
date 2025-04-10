@@ -2,7 +2,7 @@
 $host = 'localhost';
 $user = 'root';
 $pass = '';
-$db = 'db';
+$db = 'cadastro_login';
 
 class Database {
     public $conn;

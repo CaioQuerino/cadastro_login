@@ -28,16 +28,20 @@ try {
         throw new Exception('Missing required fields: ' . implode(', ', $missingFields), 400);
     }
 
-
     // Sanitize inputs
-    $first_name = mysqli_real_escape_string($conn, $_POST['first-name']);
-    $last_name = mysqli_real_escape_string($conn, $_POST['last-name']);
-    $email = filter_var($_POST['email'], FILTER_SANITIZE_EMAIL);
+    $first_name = mysqli_real_escape_string($conn, trim($_POST['first-name']));
+    $last_name = mysqli_real_escape_string($conn, trim($_POST['last-name']));
+    $email = filter_var(trim($_POST['email']), FILTER_SANITIZE_EMAIL);
     $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
 
     // Validate email
     if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
         throw new Exception('Invalid email format', 400);
+    }
+
+    // Check password strength
+    if (strlen($_POST['password']) < 10) {
+        throw new Exception('Password must be at least 10 characters', 400);
     }
 
     // Check if email exists
@@ -48,12 +52,10 @@ try {
     
     if ($result->num_rows > 0) {
         throw new Exception('Email already registered', 409);
-        header('Location: ' . $BASE_URL . 'pages/erro-409.html');
-        exit();
     }
 
     // Insert new user
-    $stmt = $conn->prepare("INSERT INTO users (first_name, last_name, email, password) VALUES (?, ?, ?, ?)");
+    $stmt = $conn->prepare("INSERT INTO users (first_name, last_name, email, password, created_at) VALUES (?, ?, ?, ?, NOW())");
     $stmt->bind_param("ssss", $first_name, $last_name, $email, $password);
     
     if (!$stmt->execute()) {
@@ -67,8 +69,6 @@ try {
         'redirect' => $BASE_URL . 'pages/success-201.html'
     ]);
 
-    header('Location: ' . $BASE_URL . 'pages/success-201.html');
-    exit();
 
 } catch (Exception $e) {
     http_response_code($e->getCode() ?: 500);
@@ -76,10 +76,10 @@ try {
         'status' => 'error',
         'message' => $e->getMessage()
     ]);
-    header('Location: ' . $BASE_URL . 'pages/erro-500.html');
-    exit();
+
+
 } finally {
-    if (isset($database)) {
-        $database->closeConnection();
+    if (isset($conn)) {
+        $conn->close();
     }
 }

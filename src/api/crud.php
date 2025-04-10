@@ -1,20 +1,20 @@
 <?php
 
-include_once __DIR__ . '/conn.php';
+include_once = __DIR__ . '/conn.php';
 
 $BASE_URL = '/cadastro_login/src/'
 
 class Crud {
-    public $conn;
-    public static $instance = null;
+    private $conn;
+    private static $instance = null;
 
-    // public constructor to prevent direct instantiation
-    public function __construct($dbConnection) {
+    // private constructor to prevent direct instantiation
+    private function __construct($dbConnection) {
         $this->conn = $dbConnection;
     }
 
     // Singleton pattern to ensure single instance
-    public static function getInstance($dbConnection) {
+    private static function getInstance($dbConnection) {
         if (self::$instance === null) {
             self::$instance = new self($dbConnection);
         }
@@ -22,7 +22,7 @@ class Crud {
     }
 
     // LOGIN FUNCTION (NEW)
-    public function login($email, $password) {
+    private function login($email, $password) {
         // Find user by email
         $user = $this->readAll('users', ['email' => $email], 1);
         
@@ -56,7 +56,7 @@ class Crud {
     }
 
     // Create operation
-    public function create($table, $data) {
+    private function create($table, $data) {
         $columns = implode(', ', array_keys($data));
         $placeholders = implode(', ', array_fill(0, count($data), '?'));
         $values = array_values($data);
@@ -79,7 +79,7 @@ class Crud {
     }
 
     // Read operation (single record)
-    public function read($table, $id, $idColumn = 'id') {
+    private function read($table, $id, $idColumn = 'id') {
         $sql = "SELECT * FROM $table WHERE $idColumn = ? LIMIT 1";
         $stmt = $this->conn->prepare($sql);
 
@@ -99,7 +99,7 @@ class Crud {
     }
 
     // Read all operation (multiple records)
-    public function readAll($table, $conditions = [], $limit = 100, $offset = 0) {
+    private function readAll($table, $conditions = [], $limit = 100, $offset = 0) {
         $sql = "SELECT * FROM $table";
         $params = [];
         $types = '';
@@ -138,7 +138,7 @@ class Crud {
     }
 
     // Update operation
-    public function update($table, $id, $data, $idColumn = 'id') {
+    private function update($table, $id, $data, $idColumn = 'id') {
         $setClauses = [];
         $values = [];
         $types = '';
@@ -169,7 +169,7 @@ class Crud {
     }
 
     // Delete operation
-    public function delete($table, $id, $idColumn = 'id') {
+    private function delete($table, $id, $idColumn = 'id') {
         $sql = "DELETE FROM $table WHERE $idColumn = ?";
         $stmt = $this->conn->prepare($sql);
 
@@ -187,5 +187,5 @@ class Crud {
     }
 
     // Prevent cloning
-    public function __clone() {}
+    private function __clone() {}
 }

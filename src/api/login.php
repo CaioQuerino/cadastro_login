@@ -34,7 +34,7 @@ try {
             echo json_encode([
                 'status' => 'success',
                 'message' => $result['message'],
-                'redirect' => $BASE_URL . 'dashboard/profile.php'  // Alterado para profile.php
+                'redirect' => $BASE_URL . 'api/profile.php'  // Alterado para profile.php
             ]);
             
         } else {
